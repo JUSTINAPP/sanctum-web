@@ -1,65 +1,80 @@
-import Image from "next/image";
+import Link from 'next/link'
+import EnquireBand from './components/EnquireBand'
+import JoinBand from './components/JoinBand'
+
+const pillars = [
+  {
+    title: 'Sanctum HQ',
+    body: 'A private, members-only club in East Melbourne with a bar, dining spaces, work and meeting facilities, and a regular calendar of members-only events.',
+    href: '/sanctum-hq',
+  },
+  {
+    title: 'Events & Experiences',
+    body: "A curated calendar across sport, entertainment and culture, ranging from complimentary events through to premium experiences.",
+    href: '/events-experiences',
+  },
+  {
+    title: 'Member Benefits',
+    body: 'A growing network of partnerships across lifestyle, dining, fitness, travel, accommodation and retail.',
+    href: '/member-benefits',
+  },
+]
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <section className="relative bg-charcoal border-b border-white/5 overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6 py-28 md:py-40 text-center relative z-10">
+          <h1 className="font-serif text-4xl md:text-6xl font-light tracking-tight mb-3">
+            One Membership
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-gold text-lg md:text-2xl font-serif italic mb-10">Infinite Experiences</p>
+          <Link
+            href="/book-a-tour"
+            className="inline-block text-[11px] tracking-[0.16em] uppercase font-sans border border-white/30 px-8 py-3 rounded-full hover:border-white/60 transition-colors"
+          >
+            Book a Tour
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-background border-b border-white/5">
+        <div className="max-w-3xl mx-auto px-6 py-20 text-center">
+          <h2 className="font-serif text-2xl md:text-3xl font-light mb-6">Welcome to SANCTUM</h2>
+          <p className="text-foreground/60 text-[15px] leading-relaxed mb-4">
+            SANCTUM is a members-only club providing member facilities, benefits, events and experiences,
+            all in the one membership.
+          </p>
+          <p className="text-foreground/60 text-[15px] leading-relaxed">
+            SANCTUM was established to reduce the cost and complexity of holding multiple memberships by
+            bringing everything into one considered offering — golf, gym access, private clubs, workspaces
+            and lifestyle benefits, consolidated into a single membership.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="bg-charcoal border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-6 py-20">
+          <p className="text-gold text-[11px] tracking-[0.2em] uppercase font-sans text-center mb-2">More access. More value.</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-light text-center mb-14">What&apos;s Included</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {pillars.map((p) => (
+              <Link
+                key={p.title}
+                href={p.href}
+                className="block border border-white/10 rounded-sm p-8 hover:border-gold/40 transition-colors"
+              >
+                <h3 className="font-serif text-xl mb-3">{p.title}</h3>
+                <p className="text-foreground/55 text-[13px] leading-relaxed mb-6">{p.body}</p>
+                <span className="text-[10px] tracking-[0.14em] uppercase font-sans text-gold">Explore →</span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
-  );
+      </section>
+
+      <EnquireBand />
+      <JoinBand />
+    </>
+  )
 }
